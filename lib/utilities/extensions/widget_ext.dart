@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/utils/extensions/sizes_ext.dart';
+import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
 
 extension WidgetExt on Widget {
   Widget paddingHorizontal(double padding) =>

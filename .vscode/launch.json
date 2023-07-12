@@ -10,7 +10,7 @@
                 "--flavor",
                 "dev"
             ],
-            "program": "lib/pages/main/main_dev.dart"
+            "program": "lib/main_dev.dart"
         },
         {
             "name": "dev Profile",
@@ -21,7 +21,7 @@
                 "--flavor",
                 "dev"
             ],
-            "program": "lib/pages/main/main_dev.dart"
+            "program": "lib/main_dev.dart"
         },
         {
             "name": "dev Release",
@@ -32,7 +32,7 @@
                 "--flavor",
                 "dev"
             ],
-            "program": "lib/pages/main/main_dev.dart"
+            "program": "lib/main_dev.dart"
         },
         {
             "name": "prod Debug",
@@ -43,7 +43,7 @@
                 "--flavor",
                 "prod"
             ],
-            "program": "lib/pages/main/main_prod.dart"
+            "program": "lib/main_prod.dart"
         },
         {
             "name": "prod Profile",
@@ -54,7 +54,7 @@
                 "--flavor",
                 "prod"
             ],
-            "program": "lib/pages/main/main_prod.dart"
+            "program": "lib/main_prod.dart"
         },
         {
             "name": "prod Release",
@@ -65,7 +65,7 @@
                 "--flavor",
                 "prod"
             ],
-            "program": "lib/pages/main/main_prod.dart"
+            "program": "lib/main_prod.dart"
         }
     ]
 }

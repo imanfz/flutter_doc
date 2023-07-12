@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/configs/flavor_config.dart';
-import 'package:flutter_doc/utils/common/device_info.dart';
+import 'package:flutter_doc/utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/utilities/common/device_info.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../generated/l10n.dart';
-import '../utils/common/custom_color_scheme.dart';
+import '../../utilities/common/custom_color_scheme.dart';
 import 'home/home.dart';
 
 class App extends StatefulWidget {
@@ -39,13 +39,13 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: const [
-        S.delegate,
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      onGenerateTitle: (context) => S.of(context).title,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
       theme: ThemeData.light(useMaterial3: true).copyWith(
         extensions: <ThemeExtension<dynamic>>[
           CustomColors.light,

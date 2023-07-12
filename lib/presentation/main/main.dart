@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../data/local/app_preferences.dart';
-import '../app.dart';
+import '../../data/preferences/app_preferences.dart';
+import '../pages/app.dart';
 
 FutureOr<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

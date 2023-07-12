@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/utils/extensions/context_ext.dart';
-import 'package:flutter_doc/utils/extensions/misc_ext.dart';
-import 'package:flutter_doc/utils/extensions/sizes_ext.dart';
-import 'package:flutter_doc/utils/extensions/text_styles_ext.dart';
-import 'package:flutter_doc/utils/widget/custom_button.dart';
-import 'package:flutter_doc/utils/widget/safe_on_tap.dart';
+import 'package:flutter_doc/utilities/extensions/context_ext.dart';
+import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
+import 'package:flutter_doc/utilities/extensions/text_styles_ext.dart';
+import 'package:flutter_doc/presentation/widget/custom_button.dart';
+import 'package:flutter_doc/presentation/widget/safe_on_tap.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../configs/flavor_config.dart';
-import '../../configs/mode_config.dart';
+import '../../../utilities/configs/flavor_config.dart';
+import '../../../utilities/configs/mode_config.dart';
 import '../app.dart';
 
 class Home extends StatefulWidget {

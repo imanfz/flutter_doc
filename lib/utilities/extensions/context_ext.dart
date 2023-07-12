@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/utils/extensions/colors_ext.dart';
-import 'package:flutter_doc/utils/extensions/widget_ext.dart';
+import 'package:flutter_doc/utilities/extensions/colors_ext.dart';
+import 'package:flutter_doc/utilities/extensions/widget_ext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 extension ContextExt<T> on BuildContext {
