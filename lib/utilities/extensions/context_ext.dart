@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_doc/utilities/extensions/colors_ext.dart';
+import 'package:flutter_doc/utilities/extensions/navigator_ext.dart';
+import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
 import 'package:flutter_doc/utilities/extensions/widget_ext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../presentation/widget/safe_button.dart';
+
 extension ContextExt<T> on BuildContext {
+  // Lock orientation to portrait only
+  void setOrientationPortraitOnly() {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  }
+
   // Screen Size
   bool get isMobile => MediaQuery.of(this).size.width <= 500.0;
 
@@ -38,11 +49,9 @@ extension ContextExt<T> on BuildContext {
             children: <Widget>[Text(message)],
           ),
           actions: <Widget>[
-            TextButton(
-              child: const Text('Close'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+            SafeButton.text(
+              label: 'Close',
+              onPressed: context.navigator.pop,
             ),
           ],
         );
@@ -50,11 +59,9 @@ extension ContextExt<T> on BuildContext {
     );
   }
 
-  Future<T?> showActionDialog(
-      {required String title,
-      required String message,
-      String? actionText,
-      required Function() onPressed,
+  Future<T?> showActionDialog(String title, String message,
+      {String? actionText,
+      required Function()? onPressed,
       bool dismissible = false}) {
     return showDialog(
       context: this,
@@ -67,9 +74,19 @@ extension ContextExt<T> on BuildContext {
             children: <Widget>[Text(message)],
           ),
           actions: <Widget>[
-            TextButton(
-              onPressed: onPressed,
-              child: const Text('Close'),
+            SafeButton.text(
+              label: actionText ?? "Yes",
+              onPressed: () {
+                context.navigator.pop();
+                onPressed!();
+              },
+            ),
+            SafeButton.text(
+              label: "Cancel",
+              onPressed: () {
+                context.navigator.pop();
+                onPressed!();
+              },
             ),
           ],
         );
@@ -77,12 +94,12 @@ extension ContextExt<T> on BuildContext {
     );
   }
 
-  Future<T?> showCustomDialog(
-      {required AlertDialog alertDialog, bool dismissible = false}) {
+  Future<T?> showCustomDialog(AlertDialog alertDialog,
+      {bool dismissible = false}) {
     return showDialog(
       context: this,
       barrierDismissible: dismissible,
-      builder: (BuildContext context) {
+      builder: (_) {
         // return object of type Dialog
         return alertDialog;
       },
@@ -90,27 +107,33 @@ extension ContextExt<T> on BuildContext {
   }
 
   // Pop-ups
-  Future<T?> showBottomSheet(
-    Widget child, {
-    bool isScrollControlled = true,
-    Color? backgroundColor,
-    Color? barrierColor,
-  }) {
+  Future<T?> showBottomSheet(Widget child,
+      {bool isScrollControlled = true,
+      Color? backgroundColor,
+      Color? barrierColor}) {
     return showModalBottomSheet(
       context: this,
       barrierColor: barrierColor,
       isScrollControlled: isScrollControlled,
       backgroundColor: backgroundColor,
-      builder: (context) => Wrap(children: [child]),
+      builder: (context) => Container(
+        width: double.infinity,
+        padding: 16.paddingAll,
+        child: child,
+      ),
     );
   }
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
-      {required String message, showCloseIcon = false}) {
+    String message, {
+    showCloseIcon = false,
+    SnackBarAction? action,
+  }) {
     return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message),
         showCloseIcon: showCloseIcon,
+        action: action,
       ),
     );
   }
@@ -131,16 +154,16 @@ extension ContextExt<T> on BuildContext {
     showDialog(
       context: this,
       barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: const Row(
+      builder: (_) {
+        return AlertDialog(
+          content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               CircularProgressIndicator(),
-              SizedBox(width: 8.0),
+              SizedBox(height: 16),
               Text("Loading"),
             ],
-          ).paddingAll(20),
+          ).paddingVertical(16),
         );
       },
     );

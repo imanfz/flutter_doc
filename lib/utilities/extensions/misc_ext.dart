@@ -5,13 +5,18 @@ import 'package:flutter/cupertino.dart';
 
 /// DevTools extensions
 extension DevTools on Object {
+  // creating TAG from classname
+  String get TAG => runtimeType.toString();
+
   /// Logs an Object
   ///
   /// Instead of doing
   /// `log(object.toString())`
   /// you can do
   /// `object.log()`
-  void log() => devtools.log(toString());
+  void log(String message, {StackTrace? stackTrace}) {
+    devtools.log(message, name: TAG, stackTrace: stackTrace);
+  }
 }
 
 /// Allows to insert a separator between the items of the iterable.

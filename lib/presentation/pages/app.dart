@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/utilities/configs/flavor_config.dart';
 import 'package:flutter_doc/utilities/common/device_info.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_doc/utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../../data/datasources/preferences/secure_preferences.dart';
 import '../../utilities/common/custom_color_scheme.dart';
-import 'home/home.dart';
+import 'home/home_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -28,10 +30,14 @@ class _AppState extends State<App> {
     getDeviceInfo();
   }
 
-  void setTheme(ThemeMode t) {
+  void setTheme(ThemeMode t) async {
     setState(() {
       themeMode = t;
     });
+    var p = await SecurePreferences.getInstance();
+    p.putString('lo', 'tes');
+    var a = await p.getString('lo');
+    log(a.toString());
   }
 
   // This widget is the root of your application.
@@ -58,7 +64,12 @@ class _AppState extends State<App> {
       ),
       themeMode: themeMode,
       home: _flavorBanner(
-        child: const Home(),
+        child: const Scaffold(
+          body: SafeArea(
+            bottom: false,
+            child: HomePage(),
+          ),
+        ),
         show: kDebugMode,
       ),
     );

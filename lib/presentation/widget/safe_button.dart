@@ -43,7 +43,7 @@ class SafeButton extends StatefulWidget {
     required this.label,
     required this.onPressed,
   })  : _styleEnum = styleEnum,
-        intervalMs = 1500,
+        intervalMs = 1000,
         super(key: key);
 
   /// Primary button
@@ -165,9 +165,9 @@ class _SafeButtonState extends State<SafeButton> {
 
   @override
   Widget build(BuildContext context) {
-    OutlinedBorder? _outlinedBorder;
+    OutlinedBorder? outlinedBorder;
     if (widget.borderRadius != null) {
-      _outlinedBorder = RoundedRectangleBorder(
+      outlinedBorder = RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(widget.borderRadius!),
       );
     }
@@ -178,7 +178,7 @@ class _SafeButtonState extends State<SafeButton> {
           padding: widget.padding,
           backgroundColor: widget.backgroundColor,
           foregroundColor: widget.foregroundColor,
-          shape: _outlinedBorder,
+          shape: outlinedBorder,
         );
         if (widget.icon != null) {
           return ElevatedButton.icon(
@@ -214,7 +214,7 @@ class _SafeButtonState extends State<SafeButton> {
             minWidth: double.infinity,
             color: widget.backgroundColor,
             textColor: widget.foregroundColor,
-            shape: _outlinedBorder,
+            shape: outlinedBorder,
             onPressed: () {
               final now = DateTime.now().millisecondsSinceEpoch;
               if (now - lastTimeClicked < widget.intervalMs) {
@@ -224,10 +224,10 @@ class _SafeButtonState extends State<SafeButton> {
               widget.onPressed!();
             },
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(widget.icon),
-                Spacer(),
+                const SizedBox(width: 12.0),
                 Text(widget.label),
               ],
             ),
@@ -235,9 +235,9 @@ class _SafeButtonState extends State<SafeButton> {
         }
         return MaterialButton(
           minWidth: double.infinity,
-          color: widget.backgroundColor ?? Colors.white,
+          color: widget.backgroundColor,
           textColor: widget.foregroundColor,
-          shape: _outlinedBorder,
+          shape: outlinedBorder,
           onPressed: () {
             final now = DateTime.now().millisecondsSinceEpoch;
             if (now - lastTimeClicked < widget.intervalMs) {
@@ -255,7 +255,7 @@ class _SafeButtonState extends State<SafeButton> {
           padding: widget.padding,
           backgroundColor: widget.backgroundColor,
           foregroundColor: widget.foregroundColor,
-          shape: _outlinedBorder,
+          shape: outlinedBorder,
         );
         if (widget.icon != null) {
           return OutlinedButton.icon(
@@ -332,7 +332,7 @@ class _SafeButtonState extends State<SafeButton> {
             lastTimeClicked = now;
             widget.onPressed!();
           },
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           child: Icon(widget.icon),
         );
     }

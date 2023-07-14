@@ -1,0 +1,18 @@
+ide: "vscode"
+flavors:
+  dev:
+    app:
+      name: "Dev Flutter Doc"
+
+    android:
+      applicationId: "com.fztech.flutterdoc.dev"
+    ios:
+      bundleId: "com.fztech.flutterdoc.dev"
+  prod:
+    app:
+      name: "Flutter Doc"
+
+    android:
+      applicationId: "com.fztech.flutterdoc"
+    ios:
+      bundleId: "com.fztech.flutterdoc"

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doc/presentation/widget/safe_button.dart';
-import 'package:flutter_doc/presentation/widget/safe_on_tap.dart';
 import 'package:flutter_doc/utilities/extensions/context_ext.dart';
 import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
-import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
+import 'package:flutter_doc/utilities/extensions/string_ext.dart';
 import 'package:flutter_doc/utilities/extensions/text_styles_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -11,14 +10,14 @@ import '../../../utilities/configs/flavor_config.dart';
 import '../../../utilities/configs/mode_config.dart';
 import '../app.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   ThemeMode themeMode = ThemeMode.light;
 
   void toggleTheme() {
@@ -86,47 +85,72 @@ class _HomeState extends State<Home> {
                     textAlign: TextAlign.center,
                     style: context.bodyMedium,
                   ),
+                  Text(
+                    "Currency IDR sample : ${'20500'.toCurrency(decimalDigits: 0)}",
+                    textAlign: TextAlign.center,
+                    style: context.bodyMedium,
+                  ),
                   const SizedBox(height: 16.0),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SafeOnTap(
-                          child: SafeButton.primary(
-                            onPressed: () {
-                              context.showToast("Test");
-                              print("toast ${DateTime.now()}");
-                            },
-                            label: 'Toast',
-                          ),
-                          onSafeTap: () => context.showToast('Toast')),
+                      SafeButton.primary(
+                        label: 'Show Toast',
+                        onPressed: () {
+                          log('test toast');
+                          context.showToast("Sample Toast");
+                        },
+                        icon: Icons.add,
+                        backgroundColor: Colors.lightBlueAccent,
+                      ),
                       SafeButton.text(
+                        label: 'Show SnackBar',
                         onPressed: () =>
-                            context.showSnackBar(message: 'SnackBar'),
-                        label: 'Show snack bar',
+                            context.showSnackBar('Sample SnackBar'),
                       ),
                       SafeButton.flatt(
-                        onPressed: () => context.showBottomSheet(Padding(
-                            padding: 16.paddingAll,
-                            child: const Text('Bottom Sheet'))),
                         label: 'Bottom Sheet',
+                        onPressed: () => context.showBottomSheet(
+                          const Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('Sample Bottom Sheet'),
+                              Text('Lorem Ipsum Lo')
+                            ],
+                          ),
+                        ),
                       ),
-                      ElevatedButton(
+                      SafeButton.primary(
+                        label: 'Show Loading',
                         onPressed: () {
                           context.showLoading();
                           4.seconds.future(() {
                             context.hideLoading();
                           });
                         },
-                        child: const Text('Show Loading'),
+                        backgroundColor: Colors.yellow,
                       ),
                       SafeButton.outlined(
-                        label: "Custom Button",
+                        label: "Show Alert Dialog",
                         onPressed: () {
-                          context.showAlertDialog("Test", "Custom");
+                          context.showAlertDialog(
+                              "Test", "Sample Alert Dialog");
                         },
-                        backgroundColor: Colors.red,
                         borderRadius: 100,
+                      ),
+                      SafeButton.flatt(
+                        label: "Show Action Dialog",
+                        onPressed: () {
+                          context.showActionDialog(
+                            "Test",
+                            "Sample Action Dialog",
+                            onPressed: () {},
+                          );
+                        },
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.red,
                       ),
                     ],
                   ),

@@ -88,3 +88,29 @@ extension FontStyles on TextStyle {
   /// Use glyphs designed for slanting
   TextStyle get italic => copyWith(fontStyle: FontStyle.italic);
 }
+
+extension DecorationStyles on TextStyle {
+  TextStyle get underlined => copyWith(
+        decoration: TextDecoration.underline,
+      );
+
+  TextStyle get underlineDashed => copyWith(
+        decoration: TextDecoration.underline,
+        decorationStyle: TextDecorationStyle.dashed,
+      );
+
+  TextStyle get underlineDotted => copyWith(
+        decoration: TextDecoration.underline,
+        decorationStyle: TextDecorationStyle.dotted,
+      );
+
+  TextStyle get underlinedDouble => copyWith(
+        decoration: TextDecoration.underline,
+        decorationStyle: TextDecorationStyle.double,
+      );
+
+  TextStyle get underlinedWavy => copyWith(
+        decoration: TextDecoration.underline,
+        decorationStyle: TextDecorationStyle.wavy,
+      );
+}

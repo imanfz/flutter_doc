@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
+
 /// String extensions
 extension StringExt on String {
   /// Capitalizes each word in the string, e.g.:
@@ -83,4 +86,60 @@ extension StringExt on String {
 
   /// Checks whether this regular expression has a match in the [pattern].
   bool hasMatch(String pattern) => RegExp(pattern).hasMatch(this);
+
+  bool get isBlank => trim().isEmpty;
+
+  String get firstName =>
+      (isBlank || !contains(' ')) ? '' : trim().split(' ').first;
+
+  String get lastName =>
+      (isBlank || !contains(' ')) ? '' : trim().split(' ').last;
+
+  String getInitialName({
+    int limit = 2,
+  }) {
+    if (isBlank) {
+      return this;
+    }
+
+    final tmp = trim().split(' ').map((s) => s[0]);
+    try {
+      return tmp.join().substring(0, limit);
+    } catch (e) {
+      debugPrint(e.toString());
+      return tmp.join();
+    }
+  }
+
+  String get numberOnly => replaceAll(RegExp(r'[^0-9]'), '');
+
+  /// Convert string to currency, default value is IDR
+  String toCurrency({
+    String locale = "id",
+    String? symbol, // for replace default symbols
+    int decimalDigits = 2,
+  }) {
+    if (isEmpty) {
+      return '';
+    }
+
+    final currencyFormatter = NumberFormat.currency(
+      locale: locale,
+      symbol: symbol,
+      decimalDigits: decimalDigits,
+    );
+    return currencyFormatter.format(toDouble);
+  }
+
+  DateTime? toDate({
+    String? format,
+  }) {
+    try {
+      var outputFormat = DateFormat(format);
+      return outputFormat.parse(this);
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
 }
