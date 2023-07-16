@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
 import 'package:intl/intl.dart';
 
 /// String extensions
@@ -87,6 +87,66 @@ extension StringExt on String {
   /// Checks whether this regular expression has a match in the [pattern].
   bool hasMatch(String pattern) => RegExp(pattern).hasMatch(this);
 
+  /// Check if string contain symbol
+  bool get hasSymbol =>
+      contains(RegExp(r'[\^$*.\[\]{}()?\-"!@#%&/\,><:;_~`+=]'));
+
+  /// Check if string contain number
+  bool get hasNumber => contains(RegExp(r'[0-9]'));
+
+  /// Check if string contain uppercase
+  bool get hasUppercase => contains(RegExp(r'[A-Z]'));
+
+  /// Check if string contain lowercase
+  bool get hasLowercase => contains(RegExp(r'[a-z]'));
+
+  /// Indicates if the string is a strong password
+  bool get isValidPassword =>
+      hasMatch(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$');
+
+  /// Indicates if the string is a strong password
+  bool get isValidStrongPassword => hasMatch(
+      r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[!@#\$&*~])(?=.*?[!@#$%^&*+=/?).{8,}');
+
+  /// Indicates if the string is a email
+  bool get isValidEmail =>
+      hasMatch(r'^(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{8,}$');
+
+  /// Function to check if string contain sequential digits
+  bool isContainSequentialDigits() {
+    for (int i = 0; i < length - 2; i++) {
+      int currentDigit = int.parse(this[i]);
+      int nextDigit = int.parse(this[i + 1]);
+      int thirdDigit = int.parse(this[i + 2]);
+
+      if (currentDigit + 1 == nextDigit && nextDigit + 1 == thirdDigit) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /// Function to check if string contain alphabets
+  bool isContainSequentialAlphabets() {
+    for (int i = 0; i < length - 2; i++) {
+      String currentChar = this[i];
+      String nextChar = String.fromCharCode(codeUnitAt(i + 1));
+      String thirdChar = String.fromCharCode(codeUnitAt(i + 2));
+
+      if (currentChar.codeUnitAt(0) + 1 == nextChar.codeUnitAt(0) &&
+          nextChar.codeUnitAt(0) + 1 == thirdChar.codeUnitAt(0)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /// Function to check if string contain sequential digits
+  bool get isContainSameThreeDigits => hasMatch(r'(\d)\1{2}');
+
+  /// Indicates if the string is a blank or empty
   bool get isBlank => trim().isEmpty;
 
   String get firstName =>
@@ -95,6 +155,7 @@ extension StringExt on String {
   String get lastName =>
       (isBlank || !contains(' ')) ? '' : trim().split(' ').last;
 
+  // Gettinf initial name
   String getInitialName({
     int limit = 2,
   }) {
@@ -106,12 +167,13 @@ extension StringExt on String {
     try {
       return tmp.join().substring(0, limit);
     } catch (e) {
-      debugPrint(e.toString());
+      this.log(e.toString());
       return tmp.join();
     }
   }
 
-  String get numberOnly => replaceAll(RegExp(r'[^0-9]'), '');
+  // Getting value only number
+  String get number => replaceAll(RegExp(r'[^0-9]'), '');
 
   /// Convert string to currency, default value is IDR
   String toCurrency({
@@ -131,6 +193,7 @@ extension StringExt on String {
     return currencyFormatter.format(toDouble);
   }
 
+  // Convert string to date
   DateTime? toDate({
     String? format,
   }) {
@@ -138,7 +201,7 @@ extension StringExt on String {
       var outputFormat = DateFormat(format);
       return outputFormat.parse(this);
     } catch (e) {
-      debugPrint(e.toString());
+      this.log(e.toString());
       return null;
     }
   }
