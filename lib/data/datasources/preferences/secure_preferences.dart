@@ -496,7 +496,10 @@ class SecurePreferences extends _SecurePreferences {
     }
   }
 
-  Future<void> remove(String key) async {}
+  Future<void> remove(String key) async {
+    await _sharedPreferences.remove(key);
+    await _secureStorage?.delete(key: key);
+  }
 
   /// Method for deleting all data.
   Future<void> clearAll() async {
@@ -520,11 +523,11 @@ class _SecurePreferences {
       _packageInfo = value;
       final AndroidOptions _androidOptions = AndroidOptions(
         encryptedSharedPreferences: true,
-        sharedPreferencesName: '${value.appName}_prefs',
+        sharedPreferencesName: value.appName,
         preferencesKeyPrefix: kDebugMode ? 'debug' : 'release',
       );
-      final IOSOptions _iosOptions = IOSOptions(
-          accountName: '${value.packageName}_prefs', synchronizable: false);
+      final IOSOptions _iosOptions =
+          IOSOptions(accountName: value.packageName, synchronizable: false);
       _secureStorage ??= FlutterSecureStorage(
           aOptions: _androidOptions, iOptions: _iosOptions);
       _init();
@@ -533,6 +536,7 @@ class _SecurePreferences {
 
   _init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
+    await _secureStorage?.readAll();
   }
 
   List<String> _getStringListFromString(String result) =>
@@ -561,8 +565,7 @@ class _SecurePreferences {
   }
 
   Future<bool> _isMasterKeyAvailable() async {
-    return _secureStorage?.read(key: '${_packageInfo.packageName}_prefs') !=
-        null;
+    return _secureStorage?.read(key: _packageInfo.packageName) != null;
   }
 
   Future<String> _createMasterKey() async {

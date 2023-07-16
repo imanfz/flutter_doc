@@ -1,69 +1,13 @@
 {
   "title": "Latihan",
-  "@title": {
-    "description": "Deskripsi mengenai variabel titleApp"
-  },
-  "helloWorld": "Halo Dunia! Nama saya {myName}",
-  "@helloWorld": {
-    "description": "Deskripsi variabel helloWorld",
-    "placeholders": {
-      "myName": {
-        "type": "String"
-      }
-    }
-  },
-  "address": "Saya tinggal di {city}, {country}",
-  "@address": {
-    "description": "Deskripsi variabel address",
-    "placeholders": {
-      "city": {
-        "type": "String"
-      },
-      "country": {}
-    }
-  },
-  "myNumber": "Angka : {value}",
-  "@myNumber": {
-    "description": "Pesan dengan format int",
-    "placeholders": {
-      "value": {
-        "type": "int",
-        "format": "simpleCurrency",
-        "optionalParameters": {
-          "decimalDigits": 2
-        }
-      }
-    }
-  },
-  "todayDate": "Tanggal hari ini : {dateNow}",
-  "@todayDate": {
-    "description": "Pesan dengan format DateTime",
-    "placeholders": {
-      "dateNow": {
-        "type": "DateTime",
-        "format": "yMd"
-      }
-    }
-  },
-  "myApple": "{count,plural, =0{tidak ada apel} other{{count} apel}}",
-  "@myApple": {
-    "description": "Pesan berbentuk plural (jamak)",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "nThings": "Anda {count,plural, =0{tidak mempunyai {thing}} other{mempunyai {count} {thing}}}",
-  "@nThings": {
-    "description": "Pesan berbentuk plural dengan tambahan parameter",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      },
-      "thing": {
-        "type": "String"
-      }
-    }
-  }
+  "requiredField": "Tidak boleh kosong",
+  "hintUsername": "Username",
+  "errorUsername": "Masukkan username yang benar",
+  "hintEmail": "Email",
+  "errorEmail": "Masukkan alamat email yang benar",
+  "hintPassword": "Kata Sandi",
+  "errorPassword": "Masukkan kata sandi yang benar",
+  "errorPasswordNotSame": "Kata sandi tidak sama",
+  "errorRequiredPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil, dan setidaknya 8 karakter atau lebih",
+  "errorStrongPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil dan satu karakter khusus, dan setidaknya 8 karakter atau lebih"
 }

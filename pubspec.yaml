@@ -10,10 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: any
+  cupertino_icons:
   flutter_localizations:
     sdk: flutter
-  intl: any
+  intl:
 
   #  Bloc for state management
   # flutter_bloc: ^3.0.0
@@ -85,12 +85,17 @@ dependencies:
   # auto_size_text: any
   # Camera
   # camera: any
+  # DotEnv loader
+  # secure_dotenv:
+  # flutter_dotenv: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: any
   flutter_launcher_icons: any
+  # build_runner: any
+  # secure_dotenv_generator:
 
   # JSON
   # build_runner: any
