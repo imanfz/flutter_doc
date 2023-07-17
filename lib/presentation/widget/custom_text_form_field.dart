@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 enum _StyleEnum {
   primary,
   number,
+  username,
   email,
   password,
   createPassword,
@@ -24,6 +25,7 @@ class CustomTextFormField extends StatefulWidget {
   final double? borderRadius;
   final String password;
   final bool strongPassword;
+  final bool specialChar;
   final bool required;
 
   final _StyleEnum _styleEnum;
@@ -40,6 +42,7 @@ class CustomTextFormField extends StatefulWidget {
     this.borderRadius,
     this.password = '',
     this.strongPassword = false,
+    this.specialChar = false,
     this.required = false,
     required _StyleEnum styleEnum,
   })  : _styleEnum = styleEnum,
@@ -50,7 +53,6 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
@@ -76,7 +78,6 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
@@ -94,6 +95,31 @@ class CustomTextFormField extends StatefulWidget {
       borderRadius: borderRadius,
       required: required,
       styleEnum: _StyleEnum.number,
+    );
+  }
+
+  factory CustomTextFormField.username({
+    IconData? icon,
+    String? label,
+    String? hint,
+    ValueChanged<String>? onChanged,
+    String? textValue,
+    bool enabled = true,
+    bool outlined = false,
+    double? borderRadius,
+    bool required = false,
+  }) {
+    return CustomTextFormField._(
+      icon: icon,
+      label: label,
+      hint: hint,
+      onChanged: onChanged,
+      textValue: textValue,
+      enabled: enabled,
+      outlined: outlined,
+      borderRadius: borderRadius,
+      required: required,
+      styleEnum: _StyleEnum.username,
     );
   }
 
@@ -102,7 +128,6 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
@@ -119,7 +144,7 @@ class CustomTextFormField extends StatefulWidget {
       outlined: outlined,
       borderRadius: borderRadius,
       required: required,
-      styleEnum: _StyleEnum.number,
+      styleEnum: _StyleEnum.email,
     );
   }
 
@@ -128,12 +153,12 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
     double? borderRadius,
     bool strongPassword = false,
+    bool specialChar = false,
   }) {
     return CustomTextFormField._(
       icon: icon,
@@ -146,6 +171,7 @@ class CustomTextFormField extends StatefulWidget {
       borderRadius: borderRadius,
       required: true,
       strongPassword: strongPassword,
+      specialChar: specialChar,
       styleEnum: _StyleEnum.password,
     );
   }
@@ -155,12 +181,12 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
     double? borderRadius,
     bool strongPassword = false,
+    bool specialChar = false,
   }) {
     return CustomTextFormField._(
       icon: icon,
@@ -171,8 +197,10 @@ class CustomTextFormField extends StatefulWidget {
       enabled: enabled,
       outlined: outlined,
       borderRadius: borderRadius,
+      required: true,
       strongPassword: strongPassword,
-      styleEnum: _StyleEnum.password,
+      specialChar: specialChar,
+      styleEnum: _StyleEnum.createPassword,
     );
   }
 
@@ -181,12 +209,12 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
     double? borderRadius,
     bool strongPassword = false,
+    bool specialChar = false,
     required String password,
   }) {
     return CustomTextFormField._(
@@ -198,7 +226,9 @@ class CustomTextFormField extends StatefulWidget {
       enabled: enabled,
       outlined: outlined,
       borderRadius: borderRadius,
+      required: true,
       strongPassword: strongPassword,
+      specialChar: specialChar,
       password: password,
       styleEnum: _StyleEnum.confirmPassword,
     );
@@ -209,7 +239,6 @@ class CustomTextFormField extends StatefulWidget {
     String? label,
     String? hint,
     ValueChanged<String>? onChanged,
-    String? errorText,
     String? textValue,
     bool enabled = true,
     bool outlined = false,
@@ -235,7 +264,8 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  final FocusNode _focusNode = FocusNode();
+  final _fieldKey = GlobalKey<FormFieldState>();
+  final _focusNode = FocusNode();
   // bool _hasFocus = false;
   late TextEditingController _textEditingController;
   bool _obscurePassword = true;
@@ -277,6 +307,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     switch (widget._styleEnum) {
       case _StyleEnum.primary:
         return TextFormField(
+          key: _fieldKey,
           enabled: widget.enabled,
           controller: _textEditingController,
           focusNode: _focusNode,
@@ -292,6 +323,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       case _StyleEnum.number:
         inputFormatters.add(FilteringTextInputFormatter.digitsOnly);
         return TextFormField(
+          key: _fieldKey,
           enabled: widget.enabled,
           controller: _textEditingController,
           focusNode: _focusNode,
@@ -306,8 +338,27 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           keyboardType: TextInputType.number,
           decoration: inputDecortion,
         );
+      case _StyleEnum.username:
+        return TextFormField(
+          key: _fieldKey,
+          enabled: widget.enabled,
+          controller: _textEditingController,
+          focusNode: _focusNode,
+          validator: (value) {
+            if (widget.required && value?.isBlank == true) {
+              return AppLocalizations.of(context)?.requiredField;
+            } else if (value?.isValidUsername == false) {
+              return AppLocalizations.of(context)?.errorUsername;
+            }
+            return null;
+          },
+          onChanged: widget.onChanged,
+          keyboardType: TextInputType.name,
+          decoration: inputDecortion,
+        );
       case _StyleEnum.email:
         return TextFormField(
+          key: _fieldKey,
           enabled: widget.enabled,
           controller: _textEditingController,
           focusNode: _focusNode,
@@ -325,13 +376,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         );
       case _StyleEnum.password:
         return TextFormField(
+          key: _fieldKey,
           enabled: widget.enabled,
           controller: _textEditingController,
           focusNode: _focusNode,
           validator: (value) {
-            if (widget.required) {
+            if (widget.required && value?.isBlank == true) {
               return AppLocalizations.of(context)?.requiredField;
-            } else if (value?.isBlank == true) {
+            } else if (widget.strongPassword) {
+              if (widget.specialChar &&
+                  value?.isValidStrongPasswordWithSpecialChar == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
+              } else if (value?.isValidStrongPassword == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
+              }
+            } else if (value?.isValidWeakPassword == false) {
               return AppLocalizations.of(context)?.errorPassword;
             }
             return null;
@@ -353,17 +412,22 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         );
       case _StyleEnum.createPassword:
         return TextFormField(
+          key: _fieldKey,
           enabled: widget.enabled,
           controller: _textEditingController,
           focusNode: _focusNode,
           validator: (value) {
-            if (value?.isBlank == true) {
+            if (widget.required && value?.isBlank == true) {
+              return AppLocalizations.of(context)?.requiredField;
+            } else if (widget.strongPassword) {
+              if (widget.specialChar &&
+                  value?.isValidStrongPasswordWithSpecialChar == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
+              } else if (value?.isValidStrongPassword == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
+              }
+            } else if (value?.isValidWeakPassword == false) {
               return AppLocalizations.of(context)?.errorPassword;
-            } else if (widget.strongPassword &&
-                value?.isValidStrongPassword == false) {
-              return AppLocalizations.of(context)?.errorStrongPassword;
-            } else if (value?.isValidPassword == false) {
-              return AppLocalizations.of(context)?.errorRequiredPassword;
             }
             return null;
           },
@@ -388,13 +452,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           controller: _textEditingController,
           focusNode: _focusNode,
           validator: (value) {
-            if (value?.isBlank == true) {
+            if (widget.required && value?.isBlank == true) {
+              return AppLocalizations.of(context)?.requiredField;
+            } else if (widget.strongPassword) {
+              if (widget.specialChar &&
+                  value?.isValidStrongPasswordWithSpecialChar == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
+              } else if (value?.isValidStrongPassword == false) {
+                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
+              }
+            } else if (value?.isValidWeakPassword == false) {
               return AppLocalizations.of(context)?.errorPassword;
-            } else if (widget.strongPassword &&
-                value?.isValidStrongPassword == false) {
-              return AppLocalizations.of(context)?.errorStrongPassword;
-            } else if (value?.isValidPassword == false) {
-              return AppLocalizations.of(context)?.errorRequiredPassword;
             } else if (value != widget.password) {
               return AppLocalizations.of(context)?.errorPasswordNotSame;
             }

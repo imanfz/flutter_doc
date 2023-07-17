@@ -8,6 +8,6 @@
   "hintPassword": "Kata Sandi",
   "errorPassword": "Masukkan kata sandi yang benar",
   "errorPasswordNotSame": "Kata sandi tidak sama",
-  "errorRequiredPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil, dan setidaknya 8 karakter atau lebih",
-  "errorStrongPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil dan satu karakter khusus, dan setidaknya 8 karakter atau lebih"
+  "errorStrongPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil, dan setidaknya 8 karakter atau lebih",
+  "errorStrongPasswordWithSpecialChar": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil dan satu karakter khusus, dan setidaknya 8 karakter atau lebih"
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doc/presentation/pages/login/login_page.dart';
 import 'package:flutter_doc/presentation/widget/safe_button.dart';
 import 'package:flutter_doc/utilities/extensions/context_ext.dart';
 import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/utilities/extensions/navigator_ext.dart';
 import 'package:flutter_doc/utilities/extensions/string_ext.dart';
 import 'package:flutter_doc/utilities/extensions/text_styles_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../data/datasources/preferences/secure_preferences.dart';
 import '../../../utilities/configs/flavor_config.dart';
 import '../../../utilities/configs/mode_config.dart';
 import '../app.dart';
@@ -146,11 +149,24 @@ class _HomePageState extends State<HomePage> {
                           context.showActionDialog(
                             "Test",
                             "Sample Action Dialog",
-                            onPressed: () {},
+                            onPressed: () async {
+                              final prefs =
+                                  await SecurePreferences.getInstance();
+                              prefs.putString('test', 'hello world');
+
+                              var a = await prefs.getString('test');
+                              debugPrint(a);
+                            },
                           );
                         },
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.red,
+                      ),
+                      SafeButton.primary(
+                        label: "Go to LoginPage",
+                        onPressed: () {
+                          context.navigator.pushMaterial(LoginPage());
+                        },
                       ),
                     ],
                   ),

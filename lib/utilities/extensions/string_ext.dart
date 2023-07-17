@@ -100,17 +100,23 @@ extension StringExt on String {
   /// Check if string contain lowercase
   bool get hasLowercase => contains(RegExp(r'[a-z]'));
 
+  /// Indicates if the string is a username
+  bool get isValidUsername => hasMatch(r'^[A-Za-z][A-Za-z0-9_]{2,29}$');
+
   /// Indicates if the string is a strong password
-  bool get isValidPassword =>
+  bool get isValidWeakPassword => hasMatch(r'^(?=.*\d[a-z][A-Z]).{8,}$');
+
+  /// Indicates if the string is a strong password
+  bool get isValidStrongPassword =>
       hasMatch(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$');
 
   /// Indicates if the string is a strong password
-  bool get isValidStrongPassword => hasMatch(
+  bool get isValidStrongPasswordWithSpecialChar => hasMatch(
       r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[!@#\$&*~])(?=.*?[!@#$%^&*+=/?).{8,}');
 
   /// Indicates if the string is a email
-  bool get isValidEmail =>
-      hasMatch(r'^(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{8,}$');
+  bool get isValidEmail => hasMatch(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   /// Function to check if string contain sequential digits
   bool isContainSequentialDigits() {

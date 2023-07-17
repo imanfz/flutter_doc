@@ -8,6 +8,6 @@
   "hintPassword": "Password",
   "errorPassword": "Enter Correct Password",
   "errorPasswordNotSame": "Passwords are not the same",
-  "errorRequiredPassword": "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters",
-  "errorStrongPassword": "Must contain at least one number and one uppercase and lowercase letter and one special character, and at least 8 or more characters"
+  "errorStrongPassword": "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters",
+  "errorStrongPasswordWithSpecialChar": "Must contain at least one number and one uppercase and lowercase letter and one special character, and at least 8 or more characters"
 }
