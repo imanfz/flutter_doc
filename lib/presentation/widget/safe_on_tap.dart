@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
 class SafeOnTap extends StatefulWidget {
+  final Widget child;
+  final GestureTapCallback onSafeTap;
+  final int intervalMs;
+
   const SafeOnTap({
     Key? key,
     required this.child,
     required this.onSafeTap,
-    this.intervalMs = 500,
+    this.intervalMs = 1000,
   }) : super(key: key);
-
-  final Widget child;
-  final GestureTapCallback onSafeTap;
-  final int intervalMs;
 
   @override
   State<SafeOnTap> createState() => _SafeOnTapState();

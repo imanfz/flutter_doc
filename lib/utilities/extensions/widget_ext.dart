@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doc/presentation/widget/safe_on_tap.dart';
 import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
 
 extension WidgetExt on Widget {
@@ -24,4 +25,7 @@ extension WidgetExt on Widget {
       Padding(padding: padding.paddingRight, child: this);
 
   Widget center() => Center(child: this);
+
+  Widget onSafeTap(VoidCallback onTap) =>
+      SafeOnTap(child: this, onSafeTap: onTap);
 }

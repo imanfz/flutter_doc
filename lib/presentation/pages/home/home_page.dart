@@ -6,6 +6,7 @@ import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
 import 'package:flutter_doc/utilities/extensions/navigator_ext.dart';
 import 'package:flutter_doc/utilities/extensions/string_ext.dart';
 import 'package:flutter_doc/utilities/extensions/text_styles_ext.dart';
+import 'package:flutter_doc/utilities/extensions/widget_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../data/datasources/preferences/secure_preferences.dart';
@@ -42,6 +43,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(FlavorConfig.instance.title),
+        actions: [
+          CircleAvatar(
+            backgroundColor: Colors.blueAccent,
+            child: Text('Iman Faizal'.getInitialName()),
+          ).paddingRight(16).onSafeTap(() {
+            log('Icon avatar tapped');
+          }),
+        ],
       ),
       body: FutureBuilder(
         future: PackageInfo.fromPlatform(),
