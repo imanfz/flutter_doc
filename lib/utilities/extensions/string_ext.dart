@@ -104,7 +104,7 @@ extension StringExt on String {
   bool get isValidUsername => hasMatch(r'^[A-Za-z][A-Za-z0-9_]{2,29}$');
 
   /// Indicates if the string is a strong password
-  bool get isValidWeakPassword => hasMatch(r'^(?=.*\d[a-z][A-Z]).{8,}$');
+  bool get isValidWeakPassword => hasMatch(r'^.{8,}$');
 
   /// Indicates if the string is a strong password
   bool get isValidStrongPassword =>
@@ -117,6 +117,8 @@ extension StringExt on String {
   /// Indicates if the string is a email
   bool get isValidEmail => hasMatch(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+  bool get isValidPhoneNumber => hasMatch(r'^(?:[+0]9)?[0-9]{10,14}$');
 
   /// Function to check if string contain sequential digits
   bool isContainSequentialDigits() {
@@ -154,6 +156,9 @@ extension StringExt on String {
 
   /// Indicates if the string is a blank or empty
   bool get isBlank => trim().isEmpty;
+
+  /// Indicates if the string is a not blank or not empty
+  bool get isNotBlank => !isBlank;
 
   String get firstName =>
       (isBlank || !contains(' ')) ? '' : trim().split(' ').first;

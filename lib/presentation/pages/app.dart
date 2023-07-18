@@ -51,7 +51,7 @@ class _AppState extends State<App> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
+      title: FlavorConfig.instance.title,
       theme: ThemeData.light(useMaterial3: true).copyWith(
         extensions: <ThemeExtension<dynamic>>[
           CustomColors.light,

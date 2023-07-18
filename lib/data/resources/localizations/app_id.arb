@@ -1,13 +1,20 @@
 {
-  "title": "Latihan",
   "requiredField": "Tidak boleh kosong",
-  "hintUsername": "Username",
-  "errorUsername": "Masukkan username yang benar",
-  "hintEmail": "Email",
-  "errorEmail": "Masukkan alamat email yang benar",
-  "hintPassword": "Kata Sandi",
-  "errorPassword": "Masukkan kata sandi yang benar",
+  "labelUsername": "Nama Pengguna",
+  "hintUsername": "Masukkan Nama Pengguna",
+  "errorUsername": "Harap masukkan nama pengguna yang benar",
+  "labelEmail": "Email",
+  "hintEmail": "Masukkan Email",
+  "errorEmail": "Harap masukkan alamat email yang benar",
+  "labelPassword": "Kata Sandi",
+  "hintPassword": "Masukkan Kata Sandi",
+  "labelConfirmPassword": "Konfirmasi Kata Sandi",
+  "hintConfirmPassword": "Masukkan konfirmasi Kata Sandi",
+  "errorPassword": "Silahkan masukkan kata sandi yang benar",
   "errorPasswordNotSame": "Kata sandi tidak sama",
   "errorStrongPassword": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil, dan setidaknya 8 karakter atau lebih",
-  "errorStrongPasswordWithSpecialChar": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil dan satu karakter khusus, dan setidaknya 8 karakter atau lebih"
+  "errorStrongPasswordWithSpecialChar": "Harus mengandung setidaknya satu angka dan satu huruf besar dan kecil dan satu karakter khusus, dan setidaknya 8 karakter atau lebih",
+  "labelPhone": "Nomor Telepon",
+  "hintPhone": "Masukan nomor telepon",
+  "errorPhone": "Harap masukkan nomor telepon yang benar" 
 }

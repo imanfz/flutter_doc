@@ -1,13 +1,20 @@
 {
-  "title": "Training",
   "requiredField": "The field is required",
-  "hintUsername": "Username",
-  "errorUsername": "Enter Correct Username",
-  "hintEmail": "Email",
-  "errorEmail": "Enter Correct Email Address",
-  "hintPassword": "Password",
-  "errorPassword": "Enter Correct Password",
+  "labelUsername": "Username",
+  "hintUsername": "Enter Username",
+  "errorUsername": "Please enter the correct username",
+  "labelEmail": "Email",
+  "hintEmail": "Enter Email",
+  "errorEmail": "Please enter the correct email address",
+  "labelPassword": "Password",
+  "hintPassword": "Enter Password",
+  "labelConfirmPassword": "Confirm Password",
+  "hintConfirmPassword": "Enter Confirm Password",
+  "errorPassword": "Please enter the correct password",
   "errorPasswordNotSame": "Passwords are not the same",
   "errorStrongPassword": "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters",
-  "errorStrongPasswordWithSpecialChar": "Must contain at least one number and one uppercase and lowercase letter and one special character, and at least 8 or more characters"
+  "errorStrongPasswordWithSpecialChar": "Must contain at least one number and one uppercase and lowercase letter and one special character, and at least 8 or more characters",
+  "labelPhone": "Phone Number",
+  "hintPhone": "Enter Phone Number",
+  "errorPhone": "Please enter the correct phone number" 
 }

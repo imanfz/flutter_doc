@@ -22,15 +22,55 @@ extension DevTools on Object {
 /// Allows to insert a separator between the items of the iterable.
 extension SeparatedIterable on Iterable<Widget> {
   /// Allows to insert a [separator] between the items of the iterable.
-  List<Widget> separatedBy(Widget separator) {
+  List<Widget> separatedBy(
+    Widget separator, {
+    bool? withFirst,
+    bool? withLast,
+  }) {
     final result = <Widget>[];
     final iterator = this.iterator;
     if (iterator.moveNext()) {
+      /// added a top separator as needed
+      if (withFirst == true) {
+        result.add(separator);
+      }
       result.add(iterator.current);
       while (iterator.moveNext()) {
         result
           ..add(separator)
           ..add(iterator.current);
+      }
+      /// added a bottom separator as needed
+      if (withLast == true) {
+        result.add(separator);
+      }
+    }
+    return result;
+  }
+
+  /// Allows to insert a space between the items of the iterable.
+  List<Widget> spaceBetween({
+    double? width,
+    double? height,
+    bool? withFirst,
+    bool? withLast,
+  }) {
+    final result = <Widget>[];
+    final iterator = this.iterator;
+    if (iterator.moveNext()) {
+      /// added a top separator as needed
+      if (withFirst == true) {
+        result.add(SizedBox(width: width, height: height));
+      }
+      result.add(iterator.current);
+      while (iterator.moveNext()) {
+        result
+          ..add(SizedBox(width: width, height: height))
+          ..add(iterator.current);
+      }
+      /// added a bottom separator as needed
+      if (withLast == true) {
+        result.add(SizedBox(width: width, height: height));
       }
     }
     return result;
