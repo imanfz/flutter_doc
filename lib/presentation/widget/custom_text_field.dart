@@ -416,13 +416,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           validator: (value) {
             if (widget.required && value?.isBlank == true) {
               return AppLocalizations.of(context)?.requiredField;
-            } else if (widget.strongPassword) {
-              if (widget.specialChar &&
+            } else if (widget.strongPassword && widget.specialChar &&
                   value?.isValidStrongPasswordWithSpecialChar == false) {
-                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
-              } else if (value?.isValidStrongPassword == false) {
-                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
-              }
+              return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
+            } else if (widget.strongPassword && value?.isValidStrongPassword == false) {
+              return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
             } else if (value?.isValidWeakPassword == false) {
               return AppLocalizations.of(context)?.errorPassword;
             }
@@ -443,17 +441,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
           validator: (value) {
             if (widget.required && value?.isBlank == true) {
               return AppLocalizations.of(context)?.requiredField;
-            } else if (widget.strongPassword) {
-              if (widget.specialChar &&
+            } else if (widget.strongPassword && widget.specialChar &&
                   value?.isValidStrongPasswordWithSpecialChar == false) {
-                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
-              } else if (value?.isValidStrongPassword == false) {
-                return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
-              }
+              return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPasswordWithSpecialChar}';
+            } else if (widget.strongPassword && value?.isValidStrongPassword == false) {
+              return '${AppLocalizations.of(context)?.errorPassword}. ${AppLocalizations.of(context)?.errorStrongPassword}';
             } else if (value?.isValidWeakPassword == false) {
               return AppLocalizations.of(context)?.errorPassword;
             } else if (value != widget.password) {
-              print('not');
               return AppLocalizations.of(context)?.errorPasswordNotSame;
             }
             return null;
