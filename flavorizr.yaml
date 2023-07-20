@@ -3,6 +3,7 @@ flavors:
   dev:
     app:
       name: "Dev Flutter Doc"
+      icon: "assets/images/icon-1024x1024.png"
 
     android:
       applicationId: "com.fztech.flutterdoc.dev"
@@ -11,6 +12,7 @@ flavors:
   prod:
     app:
       name: "Flutter Doc"
+      icon: "assets/images/icon-1024x1024.png"
 
     android:
       applicationId: "com.fztech.flutterdoc"

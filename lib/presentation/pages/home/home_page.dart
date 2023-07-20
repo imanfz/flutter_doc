@@ -159,11 +159,10 @@ class _HomePageState extends State<HomePage> {
                             "Test",
                             "Sample Action Dialog",
                             onPressed: () async {
-                              final prefs =
-                                  await SecurePreferences.getInstance();
-                              prefs.putString('test', 'hello world');
+                              final prefs = await SecurePreferences.geInstance();
+                              await prefs.putString('test', 'hello guys', isEncrypted: true);
 
-                              var a = await prefs.getString('test');
+                              var a = await prefs.getString('test', isEncrypted: true);
                               debugPrint(a);
                             },
                           );
@@ -172,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                         foregroundColor: Colors.red,
                       ),
                       SafeButton.primary(
-                        label: "Go to LoginPage",
+                        label: "Login",
                         onPressed: () {
                           context.navigator.pushMaterial(LoginPage());
                         },

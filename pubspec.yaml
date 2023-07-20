@@ -53,8 +53,6 @@ dependencies:
   shared_preferences: any
   #  Secure Storage
   flutter_secure_storage: any
-  #  Cryptography faster
-  cryptography_flutter: any
   # ------- End Secure Preferences ------- #
 
   #   Device info
@@ -93,7 +91,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: any
-  flutter_launcher_icons: any
   # build_runner: any
   # secure_dotenv_generator:
 
