@@ -29,9 +29,18 @@ dependencies:
   # firebase_crashlytics: any
   # Web Socket
   # web_socket_channel: any
-  #  Remote API
-  # http: ^1.1.0
-  # dio: any
+
+  # ------- Networking ------- #
+  # Http Client
+  dio: any
+  # Cookies
+  # dio_cookie_manager: any
+  # Image Provider
+  # dio_image_provider: any
+  # Chucker
+  chucker_flutter: any
+  # ------- End Networking ------- #
+
   #  Json
   # freezed_annotation: any
   # json_annotation: any
@@ -65,8 +74,6 @@ dependencies:
   uuid: any
   #   Loading animation
   # loading_animation_widget: ^1.2.0
-  #   Chucker
-  # chucker_flutter: any
   #  Toast
   fluttertoast: any
   #  Logger

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_doc/utilities/extensions/string_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/string_ext.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';

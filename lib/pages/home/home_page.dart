@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/presentation/pages/login/login_page.dart';
-import 'package:flutter_doc/presentation/widget/safe_button.dart';
-import 'package:flutter_doc/utilities/extensions/context_ext.dart';
-import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
-import 'package:flutter_doc/utilities/extensions/navigator_ext.dart';
-import 'package:flutter_doc/utilities/extensions/string_ext.dart';
-import 'package:flutter_doc/utilities/extensions/text_styles_ext.dart';
-import 'package:flutter_doc/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/pages/login/login_page.dart';
+import 'package:flutter_doc/core/widget/safe_button.dart';
+import 'package:flutter_doc/core/utilities/extensions/context_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/navigator_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/string_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/text_styles_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../data/datasources/preferences/secure_preferences.dart';
-import '../../../utilities/configs/flavor_config.dart';
-import '../../../utilities/configs/mode_config.dart';
-import '../app.dart';
+import '../../core/data/local/secure_preferences.dart';
+import '../../core/utilities/configs/flavor_config.dart';
+import '../../core/utilities/configs/mode_config.dart';
+import '../main/app.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blueAccent,
             child: Text('Iman Faizal'.getInitialName()),
           ).paddingRight(16).onSafeTap(() {
-            log('Icon avatar tapped');
+            logD('Icon avatar tapped');
           }),
         ],
       ),
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                       SafeButton.primary(
                         label: 'Show Toast',
                         onPressed: () {
-                          log('test toast');
+                          logD('test toast');
                           context.showToast("Sample Toast");
                         },
                         icon: Icons.add,
@@ -159,10 +159,13 @@ class _HomePageState extends State<HomePage> {
                             "Test",
                             "Sample Action Dialog",
                             onPressed: () async {
-                              final prefs = await SecurePreferences.geInstance();
-                              await prefs.putString('test', 'hello guys', isEncrypted: true);
+                              final prefs =
+                                  await SecurePreferences.geInstance();
+                              await prefs.putString('test', 'hello guys',
+                                  isEncrypted: true);
 
-                              var a = await prefs.getString('test', isEncrypted: true);
+                              var a = await prefs.getString('test',
+                                  isEncrypted: true);
                               debugPrint(a);
                             },
                           );

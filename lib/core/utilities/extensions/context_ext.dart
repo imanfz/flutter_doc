@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_doc/utilities/extensions/colors_ext.dart';
-import 'package:flutter_doc/utilities/extensions/navigator_ext.dart';
-import 'package:flutter_doc/utilities/extensions/sizes_ext.dart';
-import 'package:flutter_doc/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/colors_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/navigator_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/sizes_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../presentation/widget/safe_button.dart';
+import '../../widget/safe_button.dart';
 
 extension ContextExt<T> on BuildContext {
   // Lock orientation to portrait only

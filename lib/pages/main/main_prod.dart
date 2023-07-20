@@ -1,4 +1,5 @@
-import 'utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/core/utilities/configs/flavor_config.dart';
+
 import 'main.dart' as runner;
 
 Future<void> main() async {

@@ -1,12 +1,13 @@
+import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doc/utilities/common/device_info.dart';
-import 'package:flutter_doc/utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/core/utilities/common/device_info.dart';
+import 'package:flutter_doc/core/utilities/configs/flavor_config.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import '../../utilities/common/custom_color_scheme.dart';
-import 'home/home_page.dart';
+import '../../core/utilities/common/custom_color_scheme.dart';
+import '../home/home_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -57,6 +58,10 @@ class _AppState extends State<App> {
         ],
       ),
       themeMode: themeMode,
+      navigatorObservers:
+          FlavorConfig.instance.flavor == FlavorType.dev && kDebugMode
+              ? [ChuckerFlutter.navigatorObserver]
+              : [],
       home: _flavorBanner(
         child: const Scaffold(
           body: SafeArea(

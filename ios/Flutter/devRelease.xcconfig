@@ -1,6 +1,6 @@
 #include "Generated.xcconfig"
 
-FLUTTER_TARGET=lib/main_dev.dart
+FLUTTER_TARGET=lib/pages/main/main_dev.dart
 ASSET_PREFIX=dev
 BUNDLE_NAME=Dev Flutter Doc
 BUNDLE_DISPLAY_NAME=Dev Flutter Doc

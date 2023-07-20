@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer' as devtools show log;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 /// DevTools extensions
 extension DevTools on Object {
@@ -14,7 +15,16 @@ extension DevTools on Object {
   /// `log(object.toString())`
   /// you can do
   /// `object.log()`
-  void log(String message, {StackTrace? stackTrace}) {
+
+  /// For debug mode, otherwise it doesn't show up
+  void logD(String message, {StackTrace? stackTrace}) {
+    if (kDebugMode) {
+      devtools.log(message, name: TAG, stackTrace: stackTrace);
+    }
+  }
+
+  /// For all mode
+  void logI(String message, {StackTrace? stackTrace}) {
     devtools.log(message, name: TAG, stackTrace: stackTrace);
   }
 }
@@ -40,6 +50,7 @@ extension SeparatedIterable on Iterable<Widget> {
           ..add(separator)
           ..add(iterator.current);
       }
+
       /// added a bottom separator as needed
       if (withLast == true) {
         result.add(separator);
@@ -68,6 +79,7 @@ extension SeparatedIterable on Iterable<Widget> {
           ..add(SizedBox(width: width, height: height))
           ..add(iterator.current);
       }
+
       /// added a bottom separator as needed
       if (withLast == true) {
         result.add(SizedBox(width: width, height: height));

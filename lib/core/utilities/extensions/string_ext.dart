@@ -1,4 +1,4 @@
-import 'package:flutter_doc/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 import 'package:intl/intl.dart';
 
 /// String extensions
@@ -178,7 +178,7 @@ extension StringExt on String {
     try {
       return tmp.join().substring(0, limit);
     } catch (e) {
-      this.log(e.toString());
+      this.logD(e.toString());
       return tmp.join();
     }
   }
@@ -212,7 +212,7 @@ extension StringExt on String {
       var outputFormat = DateFormat(format);
       return outputFormat.parse(this);
     } catch (e) {
-      this.log(e.toString());
+      this.logD(e.toString());
       return null;
     }
   }
