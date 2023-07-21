@@ -37,6 +37,7 @@ dependencies:
   # dio_cookie_manager: any
   # Image Provider
   # dio_image_provider: any
+  pretty_dio_logger: any
   # Chucker
   chucker_flutter: any
   # ------- End Networking ------- #

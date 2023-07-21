@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
+
 enum FlavorType { dev, prod }
 
-class FlavorConfig {
+class AppConfig {
   /// Flavor type
   final FlavorType flavor;
 
@@ -8,21 +10,21 @@ class FlavorConfig {
   final Map<String, dynamic> variables;
 
   /// Private constructor
-  FlavorConfig._internal(this.flavor, this.variables);
+  AppConfig._internal(this.flavor, this.variables);
 
   /// Internal instance of FlavorConfig
-  static FlavorConfig? _instance;
+  static AppConfig? _instance;
 
   /// Factory constructor
-  factory FlavorConfig({
+  factory AppConfig({
     FlavorType flavor = FlavorType.dev,
     Map<String, dynamic> variables = const {},
   }) {
-    return _instance = FlavorConfig._internal(flavor, variables);
+    return _instance = AppConfig._internal(flavor, variables);
   }
 
   /// Instance of FlavorConfig
-  static FlavorConfig get instance => _instance ?? FlavorConfig();
+  static AppConfig get instance => _instance ?? AppConfig();
 
   String get name => flavor.name;
 
@@ -47,4 +49,18 @@ class FlavorConfig {
         return 'https://google.com';
     }
   }
+
+  static bool get isDebug => kDebugMode;
+
+  static bool get isRelease => kReleaseMode;
+
+  static bool get isProfile => kProfileMode;
+
+  static String get mode => isDebug
+      ? "debug"
+      : isRelease
+          ? "release"
+          : isProfile
+              ? "profile"
+              : "unknown";
 }

@@ -2,22 +2,20 @@ import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_doc/core/data/remote/interceptor/auth_interceptor.dart';
-import 'package:flutter_doc/core/utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/core/data/remote/interceptor/logging_interceptor.dart';
 import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 
 class ApiClient {
-  final Dio _dio;
+  final Dio _dio = Dio();
 
-  ApiClient(this._dio) {
+  ApiClient({required final String baseUrl}) {
     /// Create dio options
-    final _options = BaseOptions(
-      baseUrl: FlavorConfig.instance.baseUrl,
+    _dio.options = BaseOptions(
+      baseUrl: baseUrl,
       connectTimeout: 60.seconds,
       receiveTimeout: 60.seconds,
-      responseType: ResponseType.json,
     );
 
-    _dio.options = _options;
     /// Added your needed custom interceptor
     _dio.interceptors.addAll([
       AuthInterceptor(),
@@ -27,7 +25,8 @@ class ApiClient {
     if (kDebugMode) {
       _dio.interceptors.addAll([
         ChuckerDioInterceptor(),
-        LogInterceptor(),
+        // PrettyDioLogger(),
+        LoggingInterceptor()
       ]);
     }
   }

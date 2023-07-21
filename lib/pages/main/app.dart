@@ -1,8 +1,10 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_doc/core/data/remote/api_client.dart';
 import 'package:flutter_doc/core/utilities/common/device_info.dart';
-import 'package:flutter_doc/core/utilities/configs/flavor_config.dart';
+import 'package:flutter_doc/core/utilities/configs/app_config.dart';
+import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -33,6 +35,12 @@ class _AppState extends State<App> {
     setState(() {
       themeMode = t;
     });
+    try {
+      await ApiClient(baseUrl: 'http://api.themoviedb.org/3/')
+          .get('movies/popular');
+    } catch (e) {
+      logD(e.toString());
+    }
   }
 
   // This widget is the root of your application.
@@ -46,7 +54,7 @@ class _AppState extends State<App> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      title: FlavorConfig.instance.title,
+      title: AppConfig.instance.title,
       theme: ThemeData.light(useMaterial3: true).copyWith(
         extensions: <ThemeExtension<dynamic>>[
           CustomColors.light,
@@ -59,11 +67,9 @@ class _AppState extends State<App> {
       ),
       themeMode: themeMode,
       navigatorObservers:
-          FlavorConfig.instance.flavor == FlavorType.dev && kDebugMode
-              ? [ChuckerFlutter.navigatorObserver]
-              : [],
+          AppConfig.isDebug ? [ChuckerFlutter.navigatorObserver] : [],
       home: _flavorBanner(
-        child: const Scaffold(
+        child: Scaffold(
           body: SafeArea(
             bottom: false,
             child: HomePage(),
@@ -81,12 +87,13 @@ class _AppState extends State<App> {
       show
           ? Banner(
               location: BannerLocation.topStart,
-              message: FlavorConfig.instance.name,
+              message: AppConfig.instance.name,
               color: Colors.green.withOpacity(0.6),
               textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12.0,
-                  letterSpacing: 1.0),
+                fontWeight: FontWeight.bold,
+                fontSize: 12.0,
+                letterSpacing: 1.0,
+              ),
               textDirection: TextDirection.ltr,
               child: child,
             )

@@ -1,7 +1,4 @@
-import 'dart:js_interop';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_doc/core/data/local/secure_preferences.dart';
 import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 
@@ -9,19 +6,16 @@ class AuthInterceptor extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    /// Get local cahce/secure shared preferences instance
-    final prefs = await SecurePreferences.geInstance();
-
-    /// Get token from local cache
-    String? token = await prefs.getString('token', isEncrypted: true);
-
-    if (kDebugMode) {
+    if (options.headers['requires-token'] == true) {
+      /// Get local cahce/secure shared preferences instance
+      final prefs = await SecurePreferences.geInstance();
+      /// Get token from local cache
+      final token = await prefs.getString('token', isEncrypted: true);
       logD('Token: $token');
-    }
-
-    /// Added token to request headers
-    if (!token.isNull) {
-      options.headers.putIfAbsent('Authorization', () => 'Bearer $token');
+      /// Added token to request headers
+      if (token?.isNotEmpty ?? false) {
+        options.headers.putIfAbsent('Authorization', () => 'Bearer $token');
+      }
     }
 
     return handler.next(options);
@@ -49,7 +43,7 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     /// Check if invalid token or session timeout
-    if (err.response?.statusCode == 302 || err.response?.statusCode == 401) {
+    if (err.response?.statusCode == 401) {
       /// Get local cahce/secure shared preferences instance
       final prefs = await SecurePreferences.geInstance();
 

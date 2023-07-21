@@ -10,8 +10,7 @@ import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../core/data/local/secure_preferences.dart';
-import '../../core/utilities/configs/flavor_config.dart';
-import '../../core/utilities/configs/mode_config.dart';
+import '../../core/utilities/configs/app_config.dart';
 import '../main/app.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(FlavorConfig.instance.title),
+        title: Text(AppConfig.instance.title),
         actions: [
           CircleAvatar(
             backgroundColor: Colors.blueAccent,
@@ -72,12 +71,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const Divider(height: 32, thickness: 2),
                   Text(
-                    "Flavor: ${FlavorConfig.instance.name}",
+                    "Flavor: ${AppConfig.instance.name}",
                     textAlign: TextAlign.center,
                     style: context.bodyMedium,
                   ),
                   Text(
-                    "Mode: ${ModeConfig.mode}",
+                    "Mode: ${AppConfig.mode}",
                     textAlign: TextAlign.center,
                     style: context.bodyMedium,
                   ),
