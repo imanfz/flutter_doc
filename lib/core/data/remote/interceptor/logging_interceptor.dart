@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_doc/core/utilities/common/logger.dart';
+import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 
 class LoggingInterceptor extends Interceptor {
-  final encoder = JsonEncoder.withIndent('  ');
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

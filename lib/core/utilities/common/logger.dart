@@ -3,12 +3,12 @@ import 'dart:developer' as devtools show log;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 
-/// Logs an Object
+/// Print an [String] Message with [tag]
 ///
 /// Instead of doing
-/// `log(object.toString())`
+/// `print([message])`
 /// you can do
-/// `object.logDebug()`
+/// `printDebug([message], tag: [tag])`
 /// only on debug mode, otherwise it doesn't show up
 void printDebug(String message, {String? tag}) {
   if (kDebugMode) {
@@ -16,34 +16,32 @@ void printDebug(String message, {String? tag}) {
   }
 }
 
-/// Logs an Object
+/// Print an [String] Message with [tag]
 ///
 /// Instead of doing
-/// `log(object.toString())`
+/// `print([message])`
 /// you can do
-/// `object.logInfo()`
-/// Log info
+/// `printInfo([message], tag: [tag])`
 void printInfo(String message, {String? tag}) {
   devtools.log(message, name: tag ?? '');
 }
 
-/// Logs an Object
+/// Print an [String] Message with [tag]
 ///
 /// Instead of doing
-/// `log(object.toString())`
+/// `print([message])`
 /// you can do
-/// `object.logError()`
-/// Log error
+/// `printError([message], tag: [tag])`
 void printError(String message, {String? tag, StackTrace? stackTrace}) {
   devtools.log('', error: message, name: tag ?? '', stackTrace: stackTrace);
 }
 
-/// Logs an Object
+/// Print an [String] JSON with [tag]
 ///
 /// Instead of doing
-/// `print(jsonString)`
+/// `print([json])`
 /// you can do
-/// `object.printPrettyJson(jsonString)`
+/// `printPrettyJson([json], tag: [tag])`
 /// example [json]: {"code":"0","text":"hello world"}
 void printPrettyJson(String json, {String? tag}) {
   try {
