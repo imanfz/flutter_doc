@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_doc/core/data/local/secure_preferences.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utilities/common/logger.dart';
 
 class AuthInterceptor extends Interceptor {
   @override
@@ -9,9 +9,11 @@ class AuthInterceptor extends Interceptor {
     if (options.headers['requires-token'] == true) {
       /// Get local cahce/secure shared preferences instance
       final prefs = await SecurePreferences.geInstance();
+
       /// Get token from local cache
       final token = await prefs.getString('token', isEncrypted: true);
-      logD('Token: $token');
+      logDebug('Token: $token');
+
       /// Added token to request headers
       if (token?.isNotEmpty ?? false) {
         options.headers.putIfAbsent('Authorization', () => 'Bearer $token');

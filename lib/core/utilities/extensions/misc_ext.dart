@@ -1,33 +1,11 @@
 import 'dart:async';
-import 'dart:developer' as devtools show log;
+import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-/// DevTools extensions
-extension DevTools on Object {
-  // creating TAG from classname
-  String get TAG => runtimeType.toString();
-
-  /// Logs an Object
-  ///
-  /// Instead of doing
-  /// `log(object.toString())`
-  /// you can do
-  /// `object.log()`
-
-  /// For debug mode, otherwise it doesn't show up
-  void logD(String message, {StackTrace? stackTrace}) {
-    if (kDebugMode) {
-      devtools.log(message, name: TAG, stackTrace: stackTrace);
-    }
-  }
-
-  /// For all mode
-  void logI(String message, {StackTrace? stackTrace}) {
-    devtools.log(message, name: TAG, stackTrace: stackTrace);
-  }
-}
+/// Converter json
+JsonDecoder decoder = JsonDecoder();
+JsonEncoder encoder = JsonEncoder.withIndent('  ');
 
 /// Allows to insert a separator between the items of the iterable.
 extension SeparatedIterable on Iterable<Widget> {

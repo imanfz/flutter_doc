@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_doc/core/utilities/common/logger.dart';
+import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:uuid/uuid.dart';
 
@@ -82,9 +84,7 @@ Future<Map<String, dynamic>> getDeviceInfo() async {
     deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
   }
 
-  if (kDebugMode) {
-    print(deviceData.toString());
-  }
+  printDebug(encoder.convert(deviceData), tag: 'getDeviceInfo');
   return deviceData;
 }
 

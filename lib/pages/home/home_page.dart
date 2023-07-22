@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doc/core/utilities/common/logger.dart';
 import 'package:flutter_doc/pages/login/login_page.dart';
 import 'package:flutter_doc/core/widget/safe_button.dart';
 import 'package:flutter_doc/core/utilities/extensions/context_ext.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.blueAccent,
             child: Text('Iman Faizal'.getInitialName()),
           ).paddingRight(16).onSafeTap(() {
-            logD('Icon avatar tapped');
+            logDebug('Icon avatar tapped');
           }),
         ],
       ),
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                       SafeButton.primary(
                         label: 'Show Toast',
                         onPressed: () {
-                          logD('test toast');
+                          logDebug('test toast');
                           context.showToast("Sample Toast");
                         },
                         icon: Icons.add,

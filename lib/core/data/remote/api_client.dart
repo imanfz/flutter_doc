@@ -25,8 +25,7 @@ class ApiClient {
     if (kDebugMode) {
       _dio.interceptors.addAll([
         ChuckerDioInterceptor(),
-        // PrettyDioLogger(),
-        LoggingInterceptor()
+        LoggingInterceptor(),
       ]);
     }
   }
