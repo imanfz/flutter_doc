@@ -15,6 +15,12 @@ dependencies:
     sdk: flutter
   intl:
 
+  # In app update
+  upgrader: any
+
+  # Router
+  go_router: any
+
   #  Bloc for state management
   # flutter_bloc: ^3.0.0
   # Router
@@ -42,6 +48,10 @@ dependencies:
   chucker_flutter: any
   # ------- End Networking ------- #
 
+  # Cached Image
+  cached_network_image: any
+  # Bluring view
+  flutter_blurhash: any
   #  Json
   # freezed_annotation: any
   # json_annotation: any
@@ -70,11 +80,9 @@ dependencies:
   #   Application info
   package_info_plus: any
   #   Connectivity info
-  #  connectivity_plus: any
+  connectivity_plus: any
   #   Device UUID
   uuid: any
-  #   Loading animation
-  # loading_animation_widget: ^1.2.0
   #  Toast
   fluttertoast: any
   #  Logger

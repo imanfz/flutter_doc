@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +16,7 @@ class ApiClient {
       baseUrl: baseUrl,
       connectTimeout: 60.seconds,
       receiveTimeout: 60.seconds,
+      validateStatus: (status) => status != null && status >= 200 && status < 400,
     );
 
     /// Added your needed custom interceptor
@@ -47,8 +50,10 @@ class ApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       return response;
-    } catch (e) {
+    } on SocketException {
       rethrow;
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 
@@ -73,8 +78,10 @@ class ApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       return response;
-    } catch (e) {
+    } on SocketException {
       rethrow;
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 
@@ -99,8 +106,10 @@ class ApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       return response;
-    } catch (e) {
+    } on SocketException {
       rethrow;
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 
@@ -123,8 +132,10 @@ class ApiClient {
         cancelToken: cancelToken,
       );
       return response.data;
-    } catch (e) {
+    } on SocketException {
       rethrow;
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 }

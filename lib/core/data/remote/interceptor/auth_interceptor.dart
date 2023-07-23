@@ -18,6 +18,9 @@ class AuthInterceptor extends Interceptor {
       if (token?.isNotEmpty ?? false) {
         options.headers.putIfAbsent('Authorization', () => 'Bearer $token');
       }
+
+      // remove unused api headers
+      options.headers.remove('requires-token');
     }
 
     return handler.next(options);

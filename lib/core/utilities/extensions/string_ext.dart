@@ -166,7 +166,7 @@ extension StringExt on String {
   String get lastName =>
       (isBlank || !contains(' ')) ? '' : trim().split(' ').last;
 
-  // Gettinf initial name
+  /// Getting initial name
   String getInitialName({
     int limit = 2,
   }) {
@@ -183,7 +183,7 @@ extension StringExt on String {
     }
   }
 
-  // Getting value only number
+  /// Getting value only number
   String get number => replaceAll(RegExp(r'[^0-9]'), '');
 
   /// Convert string to currency, default value is IDR
@@ -204,7 +204,7 @@ extension StringExt on String {
     return currencyFormatter.format(toDouble);
   }
 
-  // Convert string to date
+  /// Convert string to date
   DateTime? toDate({
     String? format,
   }) {

@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_doc/core/utilities/common/logger.dart';
 import 'package:flutter_doc/pages/login/login_page.dart';
 import 'package:flutter_doc/core/widget/safe_button.dart';
@@ -64,6 +66,28 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  CachedNetworkImage(
+                    maxHeightDiskCache: 10,
+                    imageUrl: "http://via.placeholder.com/350x150",
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            CircularProgressIndicator(
+                                value: downloadProgress.progress),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    fadeOutDuration: const Duration(seconds: 1),
+                    fadeInDuration: const Duration(seconds: 3),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  CachedNetworkImage(
+                    placeholder: (context, url) => const AspectRatio(
+                      aspectRatio: 1.6,
+                      child: BlurHash(hash: 'LEHV6nWB2yk8pyo0adR*.7kCMdnj'),
+                    ),
+                    imageUrl: 'https://blurha.sh/assets/images/img1.jpg',
+                    fit: BoxFit.cover,
+                  ),
                   const Divider(),
                   Text(
                     "Belajar Flutter Flavor dan Flutter Mode",
