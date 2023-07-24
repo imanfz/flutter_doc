@@ -1,10 +1,10 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_doc/core/configs/app_config.dart';
 import 'package:flutter_doc/core/data/remote/api_client.dart';
 import 'package:flutter_doc/core/utilities/common/device_info.dart';
 import 'package:flutter_doc/core/utilities/common/logger.dart';
-import 'package:flutter_doc/core/utilities/configs/app_config.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

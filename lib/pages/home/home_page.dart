@@ -2,18 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_doc/core/utilities/common/logger.dart';
-import 'package:flutter_doc/pages/login/login_page.dart';
-import 'package:flutter_doc/core/widget/safe_button.dart';
 import 'package:flutter_doc/core/utilities/extensions/context_ext.dart';
 import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
 import 'package:flutter_doc/core/utilities/extensions/navigator_ext.dart';
 import 'package:flutter_doc/core/utilities/extensions/string_ext.dart';
 import 'package:flutter_doc/core/utilities/extensions/text_styles_ext.dart';
 import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/core/widget/safe_button.dart';
+import 'package:flutter_doc/pages/login/login_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../core/configs/app_config.dart';
 import '../../core/data/local/secure_preferences.dart';
-import '../../core/utilities/configs/app_config.dart';
 import '../main/app.dart';
 
 class HomePage extends StatefulWidget {
@@ -67,8 +67,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CachedNetworkImage(
-                    maxHeightDiskCache: 10,
-                    imageUrl: "http://via.placeholder.com/350x150",
+                    imageUrl: "https://picsum.photos/id/237/200/300",
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) =>
                             CircularProgressIndicator(
@@ -82,11 +81,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   CachedNetworkImage(
                     placeholder: (context, url) => const AspectRatio(
-                      aspectRatio: 1.6,
+                      aspectRatio: 2,
                       child: BlurHash(hash: 'LEHV6nWB2yk8pyo0adR*.7kCMdnj'),
                     ),
-                    imageUrl: 'https://blurha.sh/assets/images/img1.jpg',
+                    imageUrl: 'https://picsum.photos/450/200?image=9',
                     fit: BoxFit.cover,
+                    fadeOutDuration: const Duration(seconds: 1),
+                    fadeInDuration: const Duration(seconds: 2),
                   ),
                   const Divider(),
                   Text(
@@ -202,6 +203,9 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           context.navigator.pushMaterial(LoginPage());
                         },
+                      ),
+                      SizedBox(
+                        height: 32,
                       ),
                     ],
                   ),

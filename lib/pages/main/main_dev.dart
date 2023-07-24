@@ -1,4 +1,5 @@
-import 'package:flutter_doc/core/utilities/configs/app_config.dart';
+import 'package:flutter_doc/core/configs/app_config.dart';
+
 import 'main.dart' as runner;
 
 Future<void> main() async {

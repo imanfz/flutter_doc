@@ -89,6 +89,8 @@ dependencies:
   #  logging: any
   # Sharing
   # share_plus: any
+  # Launching a URL. Supports web, phone, SMS, and email schemes
+  # url_launcher: any
   # auto swith widget by platform
   #  flutter_platform_widgets: any
   # lottie animation
