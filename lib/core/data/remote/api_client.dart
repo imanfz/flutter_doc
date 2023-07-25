@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_doc/core/data/remote/interceptor/auth_interceptor.dart';
 import 'package:flutter_doc/core/data/remote/interceptor/logging_interceptor.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/misc_ext.dart';
 
 class ApiClient {
   final Dio _dio = Dio();

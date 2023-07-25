@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_doc/core/utilities/common/logger.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utils/common/logger.dart';
+import 'package:flutter_doc/core/utils/extensions/misc_ext.dart';
 
 class LoggingInterceptor extends Interceptor {
   /// `requestHeaders`: Whether to log the request headrers or not,

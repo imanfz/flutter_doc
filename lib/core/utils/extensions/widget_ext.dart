@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doc/core/widget/safe_on_tap.dart';
-import 'package:flutter_doc/core/utilities/extensions/sizes_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/sizes_ext.dart';
 
 extension WidgetExt on Widget {
   Widget paddingHorizontal(double padding) =>

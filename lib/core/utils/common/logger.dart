@@ -1,7 +1,7 @@
 import 'dart:developer' as devtools show log;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/misc_ext.dart';
 
 /// Print an [String] Message with [tag]
 ///

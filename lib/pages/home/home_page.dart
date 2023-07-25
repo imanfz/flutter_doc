@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
-import 'package:flutter_doc/core/utilities/common/logger.dart';
-import 'package:flutter_doc/core/utilities/extensions/context_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/navigator_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/string_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/text_styles_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/core/utils/common/logger.dart';
+import 'package:flutter_doc/core/utils/extensions/context_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/navigator_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/string_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/text_styles_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/widget_ext.dart';
 import 'package:flutter_doc/core/widget/safe_button.dart';
 import 'package:flutter_doc/pages/login/login_page.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../core/configs/app_config.dart';
+import '../../configs/app_config.dart';
 import '../../core/data/local/secure_preferences.dart';
 import '../main/app.dart';
 

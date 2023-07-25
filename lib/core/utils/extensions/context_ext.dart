@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_doc/core/utilities/extensions/colors_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/navigator_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/sizes_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/colors_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/navigator_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/sizes_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/widget_ext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../widget/safe_button.dart';

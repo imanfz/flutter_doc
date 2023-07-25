@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_doc/core/data/local/secure_preferences.dart';
-import 'package:flutter_doc/core/utilities/common/logger.dart';
+import 'package:flutter_doc/core/utils/common/logger.dart';
 
 class AuthInterceptor extends Interceptor {
   @override

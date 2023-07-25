@@ -1,4 +1,4 @@
-import 'package:flutter_doc/core/utilities/common/logger.dart';
+import 'package:flutter_doc/core/utils/common/logger.dart';
 import 'package:intl/intl.dart';
 
 /// String extensions

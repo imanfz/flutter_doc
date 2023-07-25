@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doc/core/widget/custom_text_field.dart';
 import 'package:flutter_doc/core/widget/safe_button.dart';
-import 'package:flutter_doc/core/utilities/extensions/misc_ext.dart';
-import 'package:flutter_doc/core/utilities/extensions/widget_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/misc_ext.dart';
+import 'package:flutter_doc/core/utils/extensions/widget_ext.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
